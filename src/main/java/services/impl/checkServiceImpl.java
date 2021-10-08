@@ -1,4 +1,11 @@
 package services.impl;
 
-public class checkServiceImpl {
+import services.checkService;
+
+/**
+ * @author Heming233
+ * @version v1.0
+ */
+
+public class checkServiceImpl implements checkService {
 }
