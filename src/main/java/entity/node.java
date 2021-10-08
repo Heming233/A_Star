@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
  */
 
 @Data
+@NoArgsConstructor//配置无参构造方法
+@AllArgsConstructor//配置有参构造方法
 public class node {
     private int[] position=new int[9];  //当前局面，元素编号为位置，元素数值为在该位置的数字
     private int depth;  //当前深度；从初始位置走到当前位置的步数

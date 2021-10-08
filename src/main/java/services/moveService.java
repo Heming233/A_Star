@@ -1,4 +1,4 @@
 package services;
 
-public class moveService {
+public interface moveService {
 }

@@ -1,4 +1,4 @@
 package services;
 
-public class panelService {
+public interface panelService {
 }

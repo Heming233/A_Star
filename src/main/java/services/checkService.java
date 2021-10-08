@@ -1,4 +1,4 @@
 package services;
 
-public class checkService {
+public interface checkService {
 }
