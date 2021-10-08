@@ -5,4 +5,5 @@ import lombok.NoArgsConstructor;
 
 @Data
 public class node {
+    private int depth;
 }
