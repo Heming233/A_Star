@@ -41,7 +41,7 @@ public class checkServiceImpl implements checkService {
     }
 
     @Override
-    public boolean isMovable(int number,int[] position){
+    public int isMovable(int number,int[] position){
         int[][] graph=new int[3][3];
         //int flag=0;//用于确定选定的某个数四周有没有空格的标记
         int n=0,i=0,j=0;
@@ -67,19 +67,19 @@ public class checkServiceImpl implements checkService {
 
         //判断position[number]四周有没有空格
         if(graph[i-1][j]==0&&i-1>=0){
-            return true;
+            return 3;
         }
         if(graph[i+1][j]==0&&i+1<=2){
-            return true;
+            return 4;
         }
         if(graph[i][j-1]==0&&j-1>=0){
-            return true;
+            return 1;
         }
         if(graph[i][j+1]==0&&j+1<=2){
-            return true;
+            return 2;
         }
 
-        return false;
+        return 0;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package services.impl;
 
+import entity.Node;
 import services.moveService;
 
 /**
@@ -8,4 +9,8 @@ import services.moveService;
  */
 
 public class moveServiceImpl implements moveService {
+    @Override
+    public boolean moveByHand(Node node){
+        return true;
+    }
 }

@@ -19,7 +19,7 @@ public interface checkService {
     public boolean isSolvable(Node node);
 
     //检查能否移动
-    public boolean isMovable(int number, int[] position);
+    public int isMovable(int number, int[] position);
 
     //检查open表里有没有某节点
     public boolean isExist(ArrayList<Node> open, Node node);
