@@ -5,6 +5,7 @@ import services.moveService;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * @author Heming233
@@ -15,7 +16,7 @@ public class moveServiceImpl extends checkServiceImpl implements moveService {
     private Node result=new Node();
 
     @Override
-    public void init(Node node){
+    public void update(Node node){
         int temp=0;
         result.setPosition(new int[]{1,2,3,8,0,4,7,6,5});
         for(int i=0; i<9; i++){
@@ -83,7 +84,6 @@ public class moveServiceImpl extends checkServiceImpl implements moveService {
             return false;
         }
 
-        init(node);
         open.add(node);
         while(true){
             if(isCompleted(node,result)){
@@ -130,9 +130,21 @@ public class moveServiceImpl extends checkServiceImpl implements moveService {
                                 break;
                     }
                     temp.setPosition(toOne(graph));
+                    update(temp);
                     open.add(temp);
                 }
             }
+
+            /**
+             * 将open表里的预期值最小的结点转入close
+             */
+            Iterator<Node> it=open.iterator();
+            Node min=it.next();
+            while(it.hasNext()){
+                min=it.next().getEvaluation()<min.getEvaluation()?it.next():min;
+            }
+            close.add(min);
+            open.remove(min);
         }
 
         return true;
