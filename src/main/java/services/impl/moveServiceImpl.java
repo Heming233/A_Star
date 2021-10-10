@@ -13,10 +13,10 @@ import java.util.Iterator;
  */
 
 public class moveServiceImpl extends checkServiceImpl implements moveService {
-    private Node result=new Node();
+    private static Node result=new Node();
 
     @Override
-    public void update(Node node){
+    public static void update(Node node){
         int temp=0;
         result.setPosition(new int[]{1,2,3,8,0,4,7,6,5});
         for(int i=0; i<9; i++){
@@ -147,6 +147,18 @@ public class moveServiceImpl extends checkServiceImpl implements moveService {
             open.remove(min);
         }
 
+        Iterator<Node> it_close=close.iterator();
+        while(it_close.hasNext()){
+            for(int i=0; i<9; i++){
+                System.out.print(it_close.next().getPosition()[i]+" ");
+                if((i+1)%3==0){
+                    System.out.println();
+                }
+            }
+        }
+        System.out.println();
+
         return true;
     }
+
 }
