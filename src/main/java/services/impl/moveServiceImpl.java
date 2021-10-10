@@ -44,10 +44,39 @@ public class moveServiceImpl extends checkServiceImpl implements moveService {
     }
 
     @Override
+    public int[] toOne(int[][] old){
+        int[] newArray=new int[9];
+        int n=0;
+
+        for(int i=0; i<3; i++){
+            for(int j=0; j<3; j++){
+                newArray[n++]=old[i][j];
+            }
+        }
+
+        return  newArray;
+    }
+
+    @Override
+    public int[][] toTwo(int[] old){
+        int[][] newArray=new int[3][3];
+        int n=0;
+
+        for(int i=0; i<3; i++){
+            for(int j=0; j<3; j++){
+                newArray[i][j]=old[n++];
+            }
+        }
+
+        return newArray;
+    }
+
+    @Override
     public boolean autoSearchRoad(Node node){
         ArrayList<Node> open=new ArrayList<>();//存储未经历的结点
         ArrayList<Node> close=new ArrayList<>();//存储已经历的结点
         int[][] graph=new int[3][3];
+        int x=0,y=0;
 
         if(!isSolvable(node)){
             JOptionPane.showMessageDialog(null,"该情况无解","无解提示",JOptionPane.WARNING_MESSAGE);
@@ -61,9 +90,47 @@ public class moveServiceImpl extends checkServiceImpl implements moveService {
                 JOptionPane.showMessageDialog(null,"已还原标准形式","有解提示",JOptionPane.WARNING_MESSAGE);
                 break;
             }
+
+            /**
+             * 遍历棋盘内所有数字，找到预估值最小的那一步
+             */
             for(int i=0; i<node.getPosition().length; i++){
                 if(isMovable(i,node.getPosition())!=0){
                     Node temp=new Node();
+                    temp.setEvaluation(node.getEvaluation());
+                    temp.setMisPosition(node.getMisPosition());
+                    temp.setDepth(node.getDepth());
+                    temp.setParent(node.getParent());
+
+                    graph=toTwo(node.getPosition());
+                    if(i>=0&&i<=2){
+                        x=0;
+                        y=i;
+                    }
+                    else if(i>=3&&i<=5){
+                        x=1;
+                        y=i-3;
+                    }
+                    else if(i>=6){
+                        x=2;
+                        y=i-6;
+                    }
+                    switch (isMovable(i,node.getPosition())){
+                        case 1:graph[x-1][y]=graph[x][y];
+                                graph[x][y]=0;
+                                break;
+                        case 2:graph[x++][y]=graph[x][y];
+                                graph[x][y]=0;
+                                break;
+                        case 3:graph[x][y--]=graph[x][y];
+                                graph[x][y]=0;
+                                break;
+                        case 4:graph[x][y++]=graph[x][y];
+                                graph[x][y]=0;
+                                break;
+                    }
+                    temp.setPosition(toOne(graph));
+                    open.add(temp);
                 }
             }
         }

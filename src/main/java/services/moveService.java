@@ -16,4 +16,10 @@ public interface moveService {
 
     //初始化结点
     public void init(Node node);
+
+    //二维数组转一维
+    public int[] toOne(int[][] old);
+
+    //一维数组转二维
+    public int[][] toTwo(int[] old);
 }
