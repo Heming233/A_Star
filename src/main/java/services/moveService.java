@@ -15,9 +15,7 @@ public interface moveService {
     public boolean autoSearchRoad(Node node);
 
     //初始化结点
-    public static void update(Node node) {
-
-    }
+     public void update(Node node);
 
     //二维数组转一维
     public int[] toOne(int[][] old);

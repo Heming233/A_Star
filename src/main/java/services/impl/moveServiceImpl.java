@@ -16,7 +16,7 @@ public class moveServiceImpl extends checkServiceImpl implements moveService {
     private static Node result=new Node();
 
     @Override
-    public static void update(Node node){
+    public void update(Node node){
         int temp=0;
         result.setPosition(new int[]{1,2,3,8,0,4,7,6,5});
         for(int i=0; i<9; i++){
