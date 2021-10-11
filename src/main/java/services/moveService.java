@@ -22,4 +22,7 @@ public interface moveService {
 
     //一维数组转二维
     public int[][] toTwo(int[] old);
+
+    //产生随机不重复一维数组
+    public int[] randomArray();
 }

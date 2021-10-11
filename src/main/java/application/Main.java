@@ -9,6 +9,6 @@ public class Main{
 
         moveServiceImpl moveService=new moveServiceImpl();
         moveService.update(node);
-
+        moveService.autoSearchRoad(node);
     }
 }

@@ -6,6 +6,7 @@ import services.moveService;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 /**
  * @author Heming233
@@ -27,6 +28,7 @@ public class moveServiceImpl extends checkServiceImpl implements moveService {
         node.setMisPosition(temp);
         if(node.getParent()==null){
             node.setDepth(0);
+            node.setPosition(randomArray());
         }
         else{
             node.setDepth(node.getParent().getDepth()+1);
@@ -161,4 +163,24 @@ public class moveServiceImpl extends checkServiceImpl implements moveService {
         return true;
     }
 
+    @Override
+    public int[] randomArray(){
+        ArrayList<Integer> arrayList=new ArrayList<>();
+        Random random=new Random();
+        int elem=0;
+        int[] array=new int[9];
+
+        while(arrayList.size()<=10){
+            elem=random.nextInt(10);
+            if(!arrayList.contains(elem)){
+                arrayList.add(elem);
+            }
+        }
+
+        for( int i=0; i<arrayList.size(); i++){
+            array[i]=arrayList.get(i);
+        }
+
+        return array;
+    }
 }
